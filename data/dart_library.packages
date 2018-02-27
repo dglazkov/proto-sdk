@@ -1,0 +1,15 @@
+async:file:///Users/dimitri/Documents/code/fuchsia/topaz/third_party/dart-pkg/pub/async/lib/
+charcode:file:///Users/dimitri/Documents/code/fuchsia/topaz/third_party/dart-pkg/pub/charcode/lib/
+collection:file:///Users/dimitri/Documents/code/fuchsia/topaz/third_party/dart-pkg/pub/collection/lib/
+flutter:file:///Users/dimitri/Documents/code/fuchsia/topaz/third_party/dart-pkg/git/flutter/packages/flutter/lib/
+http:file:///Users/dimitri/Documents/code/fuchsia/topaz/third_party/dart-pkg/pub/http/lib/
+http_parser:file:///Users/dimitri/Documents/code/fuchsia/topaz/third_party/dart-pkg/pub/http_parser/lib/
+intl:file:///Users/dimitri/Documents/code/fuchsia/topaz/third_party/dart/third_party/pkg/intl/lib/
+meta:file:///Users/dimitri/Documents/code/fuchsia/topaz/third_party/dart-pkg/pub/meta/lib/
+path:file:///Users/dimitri/Documents/code/fuchsia/topaz/third_party/dart-pkg/pub/path/lib/
+sky_engine:file:///Users/dimitri/Documents/code/fuchsia/topaz/out/debug-x86-64/dartlang/gen/dart-pkg/sky_engine/lib/
+source_span:file:///Users/dimitri/Documents/code/fuchsia/topaz/third_party/dart-pkg/pub/source_span/lib/
+string_scanner:file:///Users/dimitri/Documents/code/fuchsia/topaz/third_party/dart-pkg/pub/string_scanner/lib/
+typed_data:file:///Users/dimitri/Documents/code/fuchsia/topaz/third_party/dart-pkg/pub/typed_data/lib/
+vector_math:file:///Users/dimitri/Documents/code/fuchsia/topaz/third_party/dart-pkg/pub/vector_math/lib/
+zircon:file:///Users/dimitri/Documents/code/fuchsia/topaz/topaz/public/dart/zircon/lib/
