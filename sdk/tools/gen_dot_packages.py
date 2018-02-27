@@ -4,6 +4,7 @@
 # found in the LICENSE file.
 
 import argparse
+import os
 import shutil
 import sys
 
@@ -19,7 +20,10 @@ def main():
                       required=True)
   parser.add_argument("--source-dir", help="Path to package source",
                       required=True)
-  parser.add_argument("--prebuilt", help="Path to the prebuilt .packages manifest", 
+  parser.add_argument("--public-dir", help="Path to Fuchsia Dart public API",
+                      required=True)
+  parser.add_argument("--prebuilt", 
+                      help="Path to the prebuilt .packages manifest", 
                       required=True)
   args = parser.parse_args()
 
@@ -27,13 +31,20 @@ def main():
   prebuilt_manifest_file_path = args.prebuilt
   package_name = args.package_name
   source_dir = args.source_dir
+  public_dir = args.public_dir
 
-  # TODO: Rather than just copying, adjust relative paths in the
-  # prebuilt_manifest_file_path.
-  shutil.copyfile(prebuilt_manifest_file_path, manifest_file_path)
+  packages = []
 
-  with open(args.out, "a+") as manifest_file_path:
-    manifest_file_path.write(create_manifest_line(package_name, source_dir))
+  with open(prebuilt_manifest_file_path, "r") as prebuilt_manifest:
+    for line in prebuilt_manifest:
+      (name, relative_path) = line.strip().split(':', 1)
+      full_path = os.path.join(public_dir, relative_path)
+      packages.append(tuple([name, full_path]))
+
+  with open(manifest_file_path, "a+") as manifest_file:
+    for name, path in packages:
+      manifest_file.write(create_manifest_line(name, path))
+    manifest_file.write(create_manifest_line(package_name, source_dir))
   return 0
 
 if __name__ == '__main__':

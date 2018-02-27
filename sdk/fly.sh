@@ -1,7 +1,7 @@
 #!/bin/sh
 
 FUCHSIA_DIR="${1}"
-SCRIPT_LOCATION=`pwd`
+SCRIPT_LOCATION="`dirname \"${0}\"`"
 
 OUT_DIR="${FUCHSIA_DIR}/out/debug-x86-64"
 PACKAGE_NAME="hello_material_source"
@@ -33,6 +33,7 @@ mkdir -p ${PACKAGE_OUT_DIR}
 ${TOOLS_DIR}/gen_dot_packages.py \
   --out ${GEN_DIR}/${PACKAGE_NAME}_dart_library.packages \
   --source-dir ${SOURCE_DIR} \
+  --public-dir ${FUCHSIA_DIR} \
   --package-name ${PACKAGE_NAME} \
   --prebuilt ${SDK_DIR}/data/dart_library.packages
 
