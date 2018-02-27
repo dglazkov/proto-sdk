@@ -1,31 +1,42 @@
 #!/bin/sh
 
+# TODO: Remove this completely.
 FUCHSIA_DIR="${1}"
-SCRIPT_LOCATION="`dirname \"${0}\"`"
+readonly SCRIPT_LOCATION="$(cd $(dirname ${BASH_SOURCE[0]} ) && pwd)"
 
-OUT_DIR="${FUCHSIA_DIR}/out/debug-x86-64"
 PACKAGE_NAME="hello_material_source"
+
+# TODO: try to move this out of source.
 SOURCE_DIR="${FUCHSIA_DIR}/topaz/examples/ui/hello_material"
+
+##### These are the previous (before I started the process of moving out) values
+##### of the directories.
+#OUT_DIR="${FUCHSIA_DIR}/out/debug-x86-64"
 #GEN_DIR="${OUT_DIR}/dartlang/gen/topaz/examples/ui/hello_material"
 #PACKAGE_OUT_DIR="${OUT_DIR}/package/${PACKAGE_NAME}"
 #WORKING_DIR="${OUT_DIR}/gen/topaz/examples/ui/hello_material/build"
 
-# will need anyway
-FLUTTER_ROOT="${FUCHSIA_DIR}/third_party/dart-pkg/git/flutter"
-FUCHSIA_ASSET_BUILDER="${OUT_DIR}/host_x64/dart-tools/fuchsia_asset_builder"
-
-# moved out
-PACKAGE_OUT_DIR="${OUT_DIR}/fly"
-GEN_DIR="${OUT_DIR}/fly"
-WORKING_DIR="${OUT_DIR}/fly"
-
-# new world
+##### These are the new locations I created.
 SDK_DIR="${SCRIPT_LOCATION}"
 TOOLS_DIR="${SDK_DIR}/tools"
 BIN_DIR="${SDK_DIR}/bin"
 
+##### These are the moved-out new locations for scripts and bins
+OUT_DIR="${SCRIPT_LOCATION}/../out"
+PACKAGE_OUT_DIR="${OUT_DIR}"
+GEN_DIR="${OUT_DIR}"
+WORKING_DIR="${OUT_DIR}"
+FUCHSIA_ASSET_BUILDER="${BIN_DIR}/fuchsia_asset_builder"
+
+##### Figure out what to do here. We should probably require installing Flutter.
+FLUTTER_ROOT="${FUCHSIA_DIR}/third_party/dart-pkg/git/flutter"
+
+##### Create a clean slate
 rm -rf ${PACKAGE_OUT_DIR}
 mkdir -p ${PACKAGE_OUT_DIR}
+
+##### From here on, this is the sequence is gleaned from from studying 
+##### `fx build -v` of hello_material_source.
 
 # this tool computes transitive dependencies out of the prepared args.root_gen_dir:
 # * turns gn paths specified in args.deps to real paths to .package files in args.root_gen_dir
@@ -37,7 +48,7 @@ ${TOOLS_DIR}/gen_dot_packages.py \
   --package-name ${PACKAGE_NAME} \
   --prebuilt ${SDK_DIR}/data/dart_library.packages
 
-# TODO: action analyzer
+# TODO: run analyzer?
 
 # action "resources"
 # pass-through: calls args.flutter_tools with the args supplied.
