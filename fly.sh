@@ -1,7 +1,8 @@
 #!/bin/sh
 
+FUCHSIA_DIR="${1}"
 SCRIPT_LOCATION=`pwd`
-FUCHSIA_DIR="${SCRIPT_LOCATION}/.."
+
 OUT_DIR="${FUCHSIA_DIR}/out/debug-x86-64"
 PACKAGE_NAME="hello_material_source"
 SOURCE_DIR="${FUCHSIA_DIR}/topaz/examples/ui/hello_material"
@@ -19,7 +20,7 @@ GEN_DIR="${OUT_DIR}/fly"
 WORKING_DIR="${OUT_DIR}/fly"
 
 # new world
-SDK_DIR="${FUCHSIA_DIR}/sdk"
+SDK_DIR="${SCRIPT_LOCATION}"
 TOOLS_DIR="${SDK_DIR}/tools"
 BIN_DIR="${SDK_DIR}/bin"
 

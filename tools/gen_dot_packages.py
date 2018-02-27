@@ -28,6 +28,8 @@ def main():
   package_name = args.package_name
   source_dir = args.source_dir
 
+  # TODO: Rather than just copying, adjust relative paths in the
+  # prebuilt_manifest_file_path.
   shutil.copyfile(prebuilt_manifest_file_path, manifest_file_path)
 
   with open(args.out, "a+") as manifest_file_path:
