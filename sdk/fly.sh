@@ -20,6 +20,7 @@ SOURCE_DIR="${FUCHSIA_DIR}/topaz/examples/ui/hello_material"
 SDK_DIR="${SCRIPT_LOCATION}"
 TOOLS_DIR="${SDK_DIR}/tools"
 BIN_DIR="${SDK_DIR}/bin"
+DATA_DIR="${SDK_DIR}/data"
 
 ##### These are the moved-out new locations for scripts and bins
 OUT_DIR="${SCRIPT_LOCATION}/../out"
@@ -46,7 +47,7 @@ ${TOOLS_DIR}/gen_dot_packages.py \
   --source-dir ${SOURCE_DIR} \
   --public-dir ${FUCHSIA_DIR} \
   --package-name ${PACKAGE_NAME} \
-  --prebuilt ${SDK_DIR}/data/dart_library.packages
+  --prebuilt ${DATA_DIR}/dart_library.packages
 
 # TODO: run analyzer?
 
@@ -89,7 +90,7 @@ ${TOOLS_DIR}/write_manifest.py \
   --manifest ${PACKAGE_OUT_DIR}/archive_manifest \
   --manifest ${PACKAGE_OUT_DIR}/system_manifest \
   --manifest ${PACKAGE_OUT_DIR}/partial_package_manifest \
-  meta/runtime=${FUCHSIA_DIR}/topaz/runtime/flutter_runner/meta/source_runtime \
+  meta/runtime=${DATA_DIR}/source_runtime \
   meta/package.json=${PACKAGE_OUT_DIR}/package.json
 
 # action "extra_target_name" in package.gni
