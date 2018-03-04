@@ -1,5 +1,7 @@
 #!/bin/sh
 
-/Users/dglazkov/Documents/code/fuchsia/topaz/build/gn_run_binary.sh ../../buildtools/mac-x64/clang/bin /Users/dglazkov/Documents/code/fuchsia/topaz/out/debug-x86-64/dart_host_x64/dart-sdk/bin/dart \
+/Users/dglazkov/Documents/code/fuchsia/topaz/build/gn_run_binary.sh \
+  ../../buildtools/mac-x64/clang/bin \
+  /Users/dglazkov/Documents/code/fuchsia/topaz/out/debug-x86-64/dart_host_x64/dart-sdk/bin/dart \
   /Users/dglazkov/Documents/code/fuchsia/topaz/out/debug-x86-64/host_x64/gen/third_party/dart-pkg/git/flutter/packages/flutter_tools/fuchsia_asset_builder.snapshot \
   "$@"
