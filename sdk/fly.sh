@@ -102,7 +102,7 @@ ${TOOLS_DIR}/combine_manifests.py \
 
 # Creates meta.far etc.
 ${BIN_DIR}/pm \
-  -k ${FUCHSIA_DIR}/build/development.key \
+  -k ${DATA_DIR}/development.key \
   -o ${PACKAGE_OUT_DIR} \
   -m ${PACKAGE_OUT_DIR}/package_manifest \
   build
