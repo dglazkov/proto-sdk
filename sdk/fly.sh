@@ -26,10 +26,10 @@ OUT_DIR="${SCRIPT_LOCATION}/../out"
 PACKAGE_OUT_DIR="${OUT_DIR}"
 GEN_DIR="${OUT_DIR}"
 WORKING_DIR="${OUT_DIR}"
-FUCHSIA_ASSET_BUILDER="${BIN_DIR}/fuchsia_asset_builder"
 
 ##### Figure out what to do here. We should probably require installing Flutter.
-FLUTTER_ROOT="${FUCHSIA_DIR}/third_party/dart-pkg/git/flutter"
+FUCHSIA_ASSET_BUILDER="${FUCHSIA_DIR}/third_party/dart-pkg/git/flutter/packages/flutter_tools/bin/fuchsia_asset_builder.dart"
+DART_EXECUTABLE="${FUCHSIA_DIR}/third_party/dart/tools/sdks/mac/dart-sdk/bin/dart"
 
 ##### Create a clean slate
 rm -rf ${PACKAGE_OUT_DIR}
@@ -51,15 +51,16 @@ ${TOOLS_DIR}/gen_dot_packages.py \
 # TODO: run analyzer?
 
 # action "resources"
-# pass-through: calls args.flutter_tools with the args supplied.
-# the fuchsia_asset_builder collects and copies all assets into args.working_dir
-${TOOLS_DIR}/asset_package.py \
-  --flutter-root ${FLUTTER_ROOT} \
-  --flutter-tools ${FUCHSIA_ASSET_BUILDER} \
+# the fuchsia_asset_builder collects and copies all assets into ${WORKING_DIR}
+pushd ${SOURCE_DIR} > /dev/null
+
+${DART_EXECUTABLE} \
+  ${FUCHSIA_ASSET_BUILDER} \
   --working-dir ${WORKING_DIR} \
-  --app-dir ${SOURCE_DIR} \
   --packages ${GEN_DIR}/${PACKAGE_NAME}_dart_library.packages \
-  --asset-manifest-out ${WORKING_DIR}/${PACKAGE_NAME}_pkgassets \
+  --asset-manifest-out ${WORKING_DIR}/${PACKAGE_NAME}_pkgassets
+
+popd > /dev/null
 
 # action "sources"
 # This is where the magic happens: determines the source files that
