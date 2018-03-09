@@ -11,7 +11,7 @@
 ## Setting up
 
 * Clone the repo `git clone https://github.com/dglazkov/proto-sdk.git`
-* Run `sdk/fly.sh /path/to/fuchsia/source/root`.
+* Run `PACKAGE_NAME="package_name" FUCHSIA_DIR="/path/to/fuchsia/root/" SOURCE_DIR="/path/to/mod/source" sdk/make-package.sh`.
 * It should run and complete silently.
 * The resulting package will be in `./out` directory.
 
@@ -21,3 +21,4 @@
 * Create a script to reliably update stuff in `bin` and `data` from a Fuchsia 
   build output.
 * Probably not use the shell script to power the whole thing?
+
