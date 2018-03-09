@@ -1,13 +1,23 @@
 #!/bin/sh
 
-# TODO: Remove this completely.
-FUCHSIA_DIR="${1}"
+# TODO: Not needing to point at Fuchsia checkout root is the goal
+#       of this exercise.
+if [ -z "${FUCHSIA_DIR}" ]; then
+    echo "Need to set FUCHSIA_DIR, pointing at Fuchsia checkout root"
+    exit 1
+fi
+
+if [ -z "${SOURCE_DIR}" ]; then
+    echo "Need to set SOURCE_DIR, the directory where the source files are."
+    exit 1
+fi
+
+if [ -z "${PACKAGE_NAME}" ]; then
+    echo "Need to set PACKAGE_NAME, the name of the package you'd like to fly."
+    exit 1
+fi
+
 readonly SCRIPT_LOCATION="$(cd $(dirname ${BASH_SOURCE[0]} ) && pwd)"
-
-PACKAGE_NAME="hello_material_source"
-
-# TODO: try to move this out of source.
-SOURCE_DIR="${FUCHSIA_DIR}/topaz/examples/ui/hello_material"
 
 ##### These are the previous (before I started the process of moving out) values
 ##### of the directories.
@@ -24,7 +34,7 @@ DATA_DIR="${SDK_DIR}/data"
 
 ##### These are the moved-out new locations for scripts and bins
 OUT_DIR="${SCRIPT_LOCATION}/../out"
-PACKAGE_OUT_DIR="${OUT_DIR}"
+PACKAGE_OUT_DIR="${OUT_DIR}/${PACKAGE_NAME}"
 GEN_DIR="${OUT_DIR}"
 WORKING_DIR="${OUT_DIR}"
 

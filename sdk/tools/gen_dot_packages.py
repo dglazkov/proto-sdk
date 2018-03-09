@@ -41,7 +41,7 @@ def main():
       full_path = os.path.join(public_dir, relative_path)
       packages.append(tuple([name, full_path]))
 
-  with open(manifest_file_path, "a+") as manifest_file:
+  with open(manifest_file_path, "w") as manifest_file:
     for name, path in packages:
       manifest_file.write(create_manifest_line(name, path))
     manifest_file.write(create_manifest_line(package_name, source_dir))
