@@ -18,6 +18,7 @@ mkdir -p ${OUT_DIR}
 echo "Building proto-SDK into: ${OUT_DIR}"
 
 # copy flutter
-rsync --exclude .git/jiri --exclude bin/cache/ -a "${FUCHSIA_DIR}/third_party/dart-pkg/git/flutter/" "${OUT_DIR}/flutter/"
-rsync --exclude .git/jiri -a "${FUCHSIA_BUILD_DIR}/dart_host_x64/dart-sdk/" "${OUT_DIR}/dart-sdk/"
-rsync -a "${FUCHSIA_BUILD_DIR}/dartlang/gen/dart-pkg/sky_engine" "${OUT_DIR}/sky_engine"
+rsync --exclude .git/jiri --exclude bin/cache/ -a "${FUCHSIA_DIR}/third_party/dart-pkg" "${OUT_DIR}"
+rsync -a "${FUCHSIA_BUILD_DIR}/dartlang/gen/dart-pkg/sky_engine" "${OUT_DIR}"
+rsync -a "${FUCHSIA_DIR}/third_party/dart/tools/sdks/mac/dart-sdk" "${OUT_DIR}"
+rsync -a "${FUCHSIA_DIR}/topaz/public" "${OUT_DIR}"
