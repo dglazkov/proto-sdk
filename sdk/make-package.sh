@@ -34,9 +34,9 @@ DATA_DIR="${SDK_DIR}/data"
 
 ##### These are the moved-out new locations for scripts and bins
 OUT_DIR="${SCRIPT_LOCATION}/../out"
-PACKAGE_OUT_DIR="${OUT_DIR}/${PACKAGE_NAME}"
-GEN_DIR="${OUT_DIR}"
-WORKING_DIR="${OUT_DIR}"
+PACKAGE_OUT_DIR="${OUT_DIR}/package/${PACKAGE_NAME}"
+GEN_DIR="${OUT_DIR}/gen"
+WORKING_DIR="${GEN_DIR}"
 
 ##### Figure out what to do here. We should probably require installing Flutter.
 FUCHSIA_ASSET_BUILDER="${FUCHSIA_DIR}/third_party/dart-pkg/git/flutter/packages/flutter_tools/bin/fuchsia_asset_builder.dart"
@@ -45,6 +45,8 @@ DART_EXECUTABLE="${FUCHSIA_DIR}/third_party/dart/tools/sdks/mac/dart-sdk/bin/dar
 ##### Create a clean slate
 rm -rf ${PACKAGE_OUT_DIR}
 mkdir -p ${PACKAGE_OUT_DIR}
+rm -rf ${GEN_DIR}
+mkdir -p ${GEN_DIR}
 
 ##### From here on, this is the sequence is gleaned from from studying 
 ##### `fx build -v` of hello_material_source.
